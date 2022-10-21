@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# Source: https://www.thepythoncode.com/article/building-wifi-scanner-in-python-scapy
+
 from scapy.all import *
 from threading import Thread
 import os
