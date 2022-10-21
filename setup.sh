@@ -1,5 +1,6 @@
 sudo apt update -y && sudo apt upgrade -y
 sudo apt install -y python 3.10
+sudo apt-get install -y aircrack-ng
 
 pip3 install scapy
 pip3 install kismet
