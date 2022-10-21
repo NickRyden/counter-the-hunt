@@ -1,6 +1,6 @@
 #!/bin/bash
 # find device
-/etc/netplan$ /bin/lsusb | grep "wireless"
+iw dev | awk '$1=="Interface"{print $2}'
 
 # Drivers
 ls /sys/bus/usb/drivers/{usb_device}/*:1.0/net/
