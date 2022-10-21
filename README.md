@@ -8,7 +8,7 @@ Originally got the idea from a PC Mag article [https://au.pcmag.com/security/956
 Essentially, data will be captured and stored in a db file, read into python and analysed every 'n' minutes depending on a person's moving speed and analyse if someone is being followed.
 
 ## Tools
-Python 3.10
-Kismet
-Scapy
+* Python 3.10
+* Kismet
+* Scapy
 
