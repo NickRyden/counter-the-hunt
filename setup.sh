@@ -1,5 +1,5 @@
 # Initial setup
-sudo apt update -y && sudo apt upgrade -y
+sudo apt -y update && sudo apt -y upgrade
 sudo apt install -y python 3.10
 sudo apt-get install -y aircrack-ng
 sudo apt install bluetooth libbluetooth-dev
