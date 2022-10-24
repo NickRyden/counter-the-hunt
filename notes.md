@@ -1,12 +1,15 @@
 # Technical notes
 
 ## Overview
-Originally this project was designed to be launched on a raspberry pi, however due to restraints of the ARM architechture we used a laptop to launch the project.
+Originally this project was designed to be launched on a raspberry pi, however due to restraints of the ARM architechture we used a laptop to launch the project. The aim is to research and develop a tool that detects surveillance or reconnaisance devices tracking an individual.
 
 ## Dot11Beacons
 Dot11Beacons are beacons given off by 802.11 complient devices which other devices use to determine signal strength, BSSIDs and SSIDs for a connection.
 These beacons can be captured and their data decoded and analysed for further use. Doc11 signals contain valueable information when war driving including a device's BSSID, SSID
 the channel in use and the Cryptography a device is utilising (WEP, WAP, WPA2 etc)
+
+## Discussions on limitations
+What if the device following you is recursively using a MAC changer to regularly change their MAC address.
 
 
 ## Calculating approximate distance from signal strength and frequency
