@@ -17,6 +17,10 @@ There is no real way of determining it a signal is using the 5GHz band or the 2.
 
 ## Analysis over time
 
+## Taking down our managed adapter
+Identify the adapter to use (show on presentation slide)
+Determine the location of the driver in use
+Put the detected device into monitor mode using airmon-ng
 
 ## Tools and equipment
 Tools used:
