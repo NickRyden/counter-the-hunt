@@ -4,6 +4,8 @@ sudo apt install -y python 3.10
 sudo apt-get install -y aircrack-ng
 sudo apt install bluetooth libbluetooth-dev
 sudo apt-get install -y golang-cfssl
+sudo apt install -y sqlite3
+sudo apt install -y sqlitebrowser
 
 # Install kismet
 wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
