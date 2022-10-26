@@ -85,8 +85,20 @@ if last_between <= 120:
 else:
     print('timed out')
 
-
-
-
 Limitations:
     natable for lack of range - follower would have to be within 30 meters of your wireless access point
+
+
+                
+                
+                
+                
+
+count = cur.execute("SELECT count(mac_addr) FROM whitelist WHERE mac_addr=' + mac_addr + '")
+print(count)
+
+if count = 0:
+    # not in whitelist, proceeeeeeeeeed
+
+# to add to whitelist:
+cur.execute("INSERT INTO whitelist (timestamp, mac_addr) values ('now', mac_addr')")
