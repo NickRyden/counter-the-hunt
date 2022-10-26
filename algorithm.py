@@ -1,6 +1,14 @@
 kismet_sql = 'kismet_file_here'
 analysis_sql = 'analysis.db'
 
+def getEpochTime():
+    dt = datetime.datetime.now()
+    epoch_time = datetime(1970, 1, 1)
+    delta = abs(dt - epoch)
+    return delta.total_seconds()
+
+now = getEpochTime()
+
 def conn(db_file):
     dbconn = None
     try:
@@ -16,29 +24,19 @@ def getKistmetData():
 
     cur.fetchall()
     
-    time_between = data[1] - data[0]
+    # last seen - now
+    last_between = data[1] - now
+    first_between = data[0] - now
     
-    if time_between >= 180:
-        cur.execute("DELETE FROM devices WHERE mac_addr='", data[3] ,"'")
+    if last_between <= 180:
+        if first_between :
+                print('send alert')
+        # ignore because data is under 3 minutes since last seen
     else:
         cur.execute("UPDATE devices SET data_here WHERE mac_addr=",mac_addr,"'")
         # update table
 
 
-
-def update(mac_addr):
-    cur = conn(analysis_sql).cursor()
-    count = cur.execute("SELECT count(mac_addr) FROM devices WHERE mac_addr='",mac_addr,"'")
-    
-    if count >= 1:
-        cur.execute("SELECT * FROM devices WHERE mac_addr='",mac_addr,"'")
-        
-        if time_between >= 180:
-            cur.execute("DELETE FROM devices WHERE mac_addr='", data[3] ,"'")
-        else:
-            cur.execute("UPDATE devices SET data_here WHERE mac_addr=",mac_addr,"'")
-    else:
-        cur.execute("INSERT INTO devices (mac_addr, other data...) VALUES ('','','','')")
 
 def updateGUItable():
     cur = conn(analysis_sql).cursor()
@@ -59,10 +57,36 @@ def updateGUItable():
         output += '</tr>'
     
     # append to table
+
+
+
+
+# Best working time example
+now = 1666747998
+
+first_seen = 1666747331
+last_seen = 1666747931
+
+print((now - first_seen) / 60)
+print((now - last_seen) / 60)
+
+last_between = last_seen - now
+first_between = first_seen - now
+
+dist = 16.000002
+
+if last_between <= 120:
+    print('Alert: secondary, stay alert. Distance = x meters, followed for ', last_between)
     
-    
-    
-    
-    
-    
-    
+    if first_between <= 240:
+        print('ALERT: RED - You\'re being followed, approximate distance: ', dist)
+        print('Details: mac_addr, ')
+        print('Added data to forensics database for further investigation')
+else:
+    print('timed out')
+
+
+
+
+Limitations:
+    natable for lack of range - follower would have to be within 30 meters of your wireless access point
