@@ -126,15 +126,59 @@ if __name__ == '__main__':
     sys.exit(app.exec_())  
 
 
+#########################################################
+#https://stackoverflow.com/questions/11853473/updating-qtablewidget-pyqt
 
 
 
+import sys
+from PyQt4.QtGui import QTableWidget 
+from PyQt4 import QtGui,QtCore
+
+class Interface(QtGui.QDialog,object):
+    kismet_sql = 'kismet_file_here'
+    analysis_sql = 'analysis.db'
+    
+    def conn(db_file):
+        dbconn = None
+        try:
+            dbconn = sqlite3.connect(db_file)
+        except Error as e:
+            print(e)
+
+    return dbconn
+    
+    def getData():
+        cur = conn(kismet_sql).cursor()
+        cur.execute("SELECT * FROM devices)
+        rows = cur.fetchall()
+
+        for row in rows:
+            return row
+    
+    
+def generateTable():
+    # connect db here
+    
+    custom = QtGui.QLineEdit()
+    layout = QtGui.QVBoxLayout(self)
+    
+    button = QtGui.QPushButton('Test', self)
+    button.clicked.connect(updateAllViews)
+    layout.addWidget(button)
+    initialData = get_data_status()
+    table1 = MyTableStatus(initialData, 145, 4)
+    layout.addWidget(table1)
+    
+def updateTable(self):
+    table1.updateFromDict(mystruct1)
 
 
-
-
-
-
+    
+    
+    
+    
+    
 
 
 
