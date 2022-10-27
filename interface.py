@@ -1,69 +1,141 @@
 # Online Python-3 Compiler (Interpreter)
 #!/bin/bash
-pip3 install tkinter
+pip3 install PyQt5
 
 #!/usr/bin/env python3
-from tkinter import *
-from tkinter import ttk
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPalette
+from PyQt5.QtWidgets import *
 
-root = tkinter.Tk()
-root.title('Follower package')
-root.geometry('960x540')
+app = QApplication([])
+app.setStyle('Fusion')
+app.setStyleSheet("QPushButton { margin: 10ex; color: red; }")
 
-lbl = tkinter.Text(root, height=10)
-lbl.pack()
-
-h1Font = ('Ubuntu', 18, 'bold')
-h2Font = ('Ubuntu', 16, 'bold')
-h3Font = ('Ubuntu', 14, 'bold')
-lblFont = ('Ubuntu', 12, 'bold')
-
-root['bg'] = '#f2f2f7'
-
-frm = Frame(root)
-frm.pack
-
-scroll = Scrollbar(frm)
-scroll.pack(side=RIGHT, fill=Y)
-
-tbl = root.Treeview(frm)
-
-# load SQL here
-tbl['columns'] = ('Last seen','MAC','','','','','ssid','bssid')
-
-tbl.column("#0", width=0,  stretch=NO)
-tbl.column("last_seen",anchor=CENTER, width=80)
-tbl.column("MAC",anchor=CENTER, width=80)
-tbl.column("",anchor=CENTER, width=80)
-tbl.column("crypt",anchor=CENTER, width=80)
-tbl.column("ssid",anchor=CENTER, width=80)
-tbl.column("bssid",anchor=CENTER, width=80)
-
-tbl.heading("#0",text="",anchor=CENTER)
-tbl.heading("last_seen",text="Last Seen",anchor=CENTER)
-tbl.heading("MAC",text="MAC Addr",anchor=CENTER)
-tbl.heading("",text="",anchor=CENTER)
-tbl.heading("",text="",anchor=CENTER)
-tbl.heading("crypt",text="Crypto",anchor=CENTER)
-tbl.heading("bssid",text="BSSID",anchor=CENTER)
-tbl.heading("ssid",text="SSID",anchor=CENTER)
-
-# SQL here
-for row in rows:
-    tbl.insert(parent='',iid=0,text='', values=(row[0],row[1],row[2],row[3], row[4]))
-
-tbl.pack()
+# Palette
+palette = QPalette()
+app.setPalette(palette)
 
 
-# Table refresh
+# Window layout
+window = QWidget()
+layout = QVBoxLayout()
 
-root.mainloop()
+layout.addWidget(QLabel('Hello World'))
+layout.addWidget(QPushButton('Top'))
+layout.addWidget(QPushButton('Bottom'))
+window.setLayout(layout)
+
+def main():
+    table = self.updateTable(Big21,3,1)
+    table.show()
+    self.table = table
+
+def createTable():
+    
+    
+    
+    
+# Table output
+def updateTable(self, data, *args):
+    columns = ['A','B']
+    
+    tbl = QTableWidget()
+    tbl.setHorizontalHeaderLabels(columns)
+    tbl.setRowCount(len(data))
+    tbl.setColumnCount(len(data.columns))
+    
+    for i in range (0,len(data)):
+        for j in range (0,len(data.columns)):
+            item1 = str(data.iloc[i,j])
+            tbl.setItem(i, j,  QTableWidgetItem(item1))
+    
+    return tableWidget
+
+# Commands
+button = QPushButton('Click')
+def on_button_clicked():
+    alert = QMessageBox()
+    alert.setText('You clicked the button!')
+    alert.exec()
+
+button.clicked.connect(on_button_clicked)
+
+
+window.show()
+app.exec()
 
 
 
-def updateTable():
-  selected = tbl.focus()
-  
+##############################################################
+import sys
+from PyQt5.QtWidgets import QMainWindow, QApplication, QWidget, QAction, QTableWidget,QTableWidgetItem,QVBoxLayout
+from PyQt5.QtGui import QIcon
+from PyQt5.QtCore import pyqtSlot
+
+class Interface(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.title = 'Counter Stalk'
+        self.left = 0
+        self.top = 0
+        self.width = 960
+        self.height = 540
+        self.initUI()
+    
+    def initUI(self):
+        self.setWindowTitle(self.title)
+        self.setGeometry(self.left, self.top, self.width, self.height)
+        
+        self.createTable()
+
+        # Add box layout, add table to box layout and add box layout to widget
+        self.layout = QVBoxLayout()
+        self.layout.addWidget(self.tableWidget) 
+        self.setLayout(self.layout) 
+
+        # Show widget
+        self.show()
+
+    def createTable(self):
+       # Create table
+        self.tableWidget = QTableWidget()
+        self.tableWidget.setRowCount(4)
+        self.tableWidget.setColumnCount(2)
+        self.tableWidget.setItem(0,0, QTableWidgetItem("Cell (1,1)"))
+        self.tableWidget.setItem(0,1, QTableWidgetItem("Cell (1,2)"))
+        self.tableWidget.setItem(1,0, QTableWidgetItem("Cell (2,1)"))
+        self.tableWidget.setItem(1,1, QTableWidgetItem("Cell (2,2)"))
+        self.tableWidget.setItem(2,0, QTableWidgetItem("Cell (3,1)"))
+        self.tableWidget.setItem(2,1, QTableWidgetItem("Cell (3,2)"))
+        self.tableWidget.setItem(3,0, QTableWidgetItem("Cell (4,1)"))
+        self.tableWidget.setItem(3,1, QTableWidgetItem("Cell (4,2)"))
+        self.tableWidget.move(0,0)
+
+        # table selection change
+        self.tableWidget.doubleClicked.connect(self.on_click)
+
+    @pyqtSlot()
+    def on_click(self):
+        print("\n")
+        for currentQTableWidgetItem in self.tableWidget.selectedItems():
+            print(currentQTableWidgetItem.row(), currentQTableWidgetItem.column(), currentQTableWidgetItem.text())
+ 
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    ex = App()
+    sys.exit(app.exec_())  
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
