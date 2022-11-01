@@ -13,3 +13,11 @@ Essentially, data will be captured and stored in a db file, read into python and
 * Scapy
 * Aircrack-ng (sp. airmon-ng)
 
+## Instructions
+
+1. Run setup.sh
+2. Import analysis.sql into sqlite and save as analysis.db
+3. Give mon.sh, reverse-mon.sh chmod executable privileges, 'chmod +x <script>'
+4. Run mon.sh, './mon.sh'
+5. Run the python script, run.py. It will start analysing and produce alerts after 3 minutes and 4 minutes
+6. Once finished, run reverse-mon.sh to stop Kismet and restore internet connectivity.
