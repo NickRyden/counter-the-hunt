@@ -1,5 +1,5 @@
-# Counter the hunt
-Using a war driving tool to see if you're being hunted.
+# Counter the Hunt
+Using a war driving tool, Kismet, to see if you're being hunted.
 
 ## Description
 Originally got the idea from a <a href="https://au.pcmag.com/security/95637/are-you-being-followed-use-a-raspberry-pi-to-find-out">PC Mag article</a>, So i thought it might be an interesting challenge to try and build it. Originally was going to build it on a raspberry pi with a wifi adapter, GPS module and a pelican case, however there were a few issues to overcome on ARM architehture. Instead, I am using a laptop to build the project.
