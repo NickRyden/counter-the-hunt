@@ -10,8 +10,8 @@ Essentially, data will be captured and stored in a db file, read into python and
 ## Tools
 * Python 3.10
 * Kismet
-* Scapy
-* Aircrack-ng (sp. airmon-ng)
+* Aircrack-ng
+* SQLite3 Database Browser
 
 ## Instructions
 
