@@ -15,7 +15,7 @@ Essentially, data will be captured and stored in a db file, read into python and
 
 ## Instructions
 
-1. Give setup.sh executable privileges and run the script [sudo chmod +x setup.sh && ./setup.sh]
+1. Give setup.sh executable privileges and run the script <code>sudo chmod +x setup.sh && ./setup.sh</code>
 2. Import analysis.sql into Sqlite3 database browser and save as analysis.db [cat analysis.sql | sqlite3 analysis.db]
 3. Give mon.sh, reverse-mon.sh chmod executable privileges [sudo chmod +x mon.sh && chmod +x reverse-mon.sh]
 4. Run mon.sh [./mon.sh]
