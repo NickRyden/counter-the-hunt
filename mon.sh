@@ -1,16 +1,20 @@
 #!/bin/bash
+interface=$(iw dev | awk '$1=="Interface"{print $2}') 
 
-# !IMPORTANT - Run at first start
-# sudo usermod --append --groups kismet $USER
-# AND
-# Create a username and password in the Kismet web interface at http://localhost:2501
-
-# Set adapter to monitor mode
-interface=$("iw dev | awk '$1==\"Interface\"{print $2}'")
 sudo airmon-ng check kill
 sudo airmon-ng start $interface
 
-# Adapter has changed, use this insetad.
-interface=$("iw dev | awk '$1==\"Interface\"{print $2}'")
-kismet -c $interface
-sudo aireplay-ng $interface
+# Grab the new interface name and run kismet in the background
+newInterface=$(iw dev | awk '$1=="Interface"{print $2}') 
+nohup kismet -c $newInterface & disown
+
+# OR don't background the process with...
+#newInterface=$(iw dev | awk '$1=="Interface"{print $2}') 
+#kismet -c $newInterface
+
+
+### NOTES #####################################
+# Either way, running reverse-mon.sh will stop
+# Kismet and restore internet connectivity
+
+# Connect to Kismet using http://localhost:2501
