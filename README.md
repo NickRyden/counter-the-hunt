@@ -16,8 +16,8 @@ Essentially, data will be captured and stored in a db file, read into python and
 ## Instructions
 
 1. Give setup.sh executable privileges and run the script <code>sudo chmod +x setup.sh && ./setup.sh</code>
-2. Import analysis.sql into Sqlite3 database browser and save as analysis.db [cat analysis.sql | sqlite3 analysis.db]
-3. Give mon.sh, reverse-mon.sh chmod executable privileges [sudo chmod +x mon.sh && chmod +x reverse-mon.sh]
-4. Run mon.sh [./mon.sh]
-5. Run the python script, run.py using [python3 run.py]. It will start analysing and produce alerts after 3 minutes and 4 minutes
-6. Once finished, run reverse-mon.sh [./reverse-mon.sh] to stop Kismet and restore internet connectivity.
+2. Import analysis.sql into Sqlite3 database browser and save as analysis.db <code>cat analysis.sql | sqlite3 analysis.db</code>
+3. Give mon.sh, reverse-mon.sh chmod executable privileges <code>sudo chmod +x mon.sh && chmod +x reverse-mon.sh</code>
+4. Run mon.sh <code>./mon.sh</code>
+5. Run the python script, run.py using <code>python3 run.py</code>. It will start analysing and produce alerts after 3 minutes and 4 minutes
+6. Once finished, run reverse-mon.sh <code>./reverse-mon.sh</code> to stop Kismet and restore internet connectivity.
