@@ -1,11 +1,11 @@
 # Counter the Hunt
-I am extending a war-driving tool, Kismet, to check if the user is being followed
+I am extending a war-driving tool, Kismet, to check if the user is being followed or stalked.
 
 ## Description
-Originally got the idea from a <a href="https://au.pcmag.com/security/95637/are-you-being-followed-use-a-raspberry-pi-to-find-out">PC Mag article</a>, So I thought it might be an exciting challenge to try and build it. I would have done the project with a raspberry pi and a wifi adapter. However, there were a few issues to overcome with the Operating systems. Instead, I am using a laptop loaded with Linux Mint to build the project.
+I got the original idea from a <a href="https://au.pcmag.com/security/95637/are-you-being-followed-use-a-raspberry-pi-to-find-out">PC Mag article</a>, So I thought it might be an exciting challenge to try and build it. I would have done the project with a raspberry pi and a Wi-Fi adapter. However, there were a few issues to overcome with the Operating systems. Instead, I am using a laptop loaded with Linux Mint to build the project.
 
 ## Technical Details
-Essentially, data will be captured and stored in a *.db file, read into python and analysed every 'n' minutes depending on a person's moving speed and investigate if someone is being followed.
+Data will be captured and stored in a *.db file, read into python and analysed every 'n' minutes depending on a person's moving speed and investigate if someone is trailing. The Python script analyses the MAC addresses given off by Wi-Fi beacons.
 
 ## Tools
 * Python 3.10
@@ -26,11 +26,11 @@ Essentially, data will be captured and stored in a *.db file, read into python a
 
 ## Dot11Beacons
 Dot11Beacons are beacons given off by 802.11-compliant devices, which other devices use to determine signal strength, BSSIDs and SSIDs for a connection.
-The wireless client's beacons are captured, and their data is decoded and analysed for further use. Dot11 signals contain valuable information when war-driving, including a device's BSSID, SSID, the channel in use and the Cryptography a device is utilising (WEP, WAP, WPA2 etc.)
+The wireless client's beacons are captured, and their data is decoded and analysed for further use. Dot11 signals contain valuable information when war-driving, including a device's BSSID, SSID, the channel in use and the Cryptography a device is utilising (WEP, WPA, WPA2, WPA3)
 
 ## Limitations
 * MAC address randomisation.
-* Unicode decode errors for Wifi Protected Setup (WPS) UUIDs.
+* Unicode decode errors for Wi-Fi Protected Setup (WPS) UUIDs.
 * Wireless adapter range.
 
 ## Tools and equipment
