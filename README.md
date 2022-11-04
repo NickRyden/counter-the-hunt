@@ -1,5 +1,5 @@
 # Counter the Hunt
-I am extending a war-driving tool, Kismet, to check if you're being hunted.
+I am extending a war-driving tool, Kismet, to check if the user is being followed
 
 ## Description
 Originally got the idea from a <a href="https://au.pcmag.com/security/95637/are-you-being-followed-use-a-raspberry-pi-to-find-out">PC Mag article</a>, So I thought it might be an exciting challenge to try and build it. I would have done the project with a raspberry pi and a wifi adapter. However, there were a few issues to overcome with the Operating systems. Instead, I am using a laptop loaded with Linux Mint to build the project.
