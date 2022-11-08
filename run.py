@@ -100,6 +100,7 @@ def analysis(first, last, data):
 
     # Convert to hours, minutes and seconds
     follow_time = str(timeFull(first_between))
+    arrFollow = follow_time.split(':')
 
     # Calculate the Distance and the deviationprint(now, first, last, kismet_db)
     dist = calcDist(data[4])
@@ -107,8 +108,11 @@ def analysis(first, last, data):
 
     # We don't care for Wi-Fi Access Points
     if data[7] == 'Wi-Fi Client' or data[7] == 'Wi-Fi Bridge':
-        if last_between >= 120:
-            if first_between >= 240:
+        if last_between <= 120:
+            if first_between >= 120 and first_between < 240:
+                # Print a yellow warning, no data captured.
+                print(Back.YELLOW + 'ALERT: Stay vigilant, Distance:', dist[0],'m', u"\u00B1", deviation, 'm', Style.RESET_ALL)
+            elif first_between >= 240:
                 # Print out an alert
                 print(Back.RED, Fore.WHITE + 'ALERT: You\'re likely being followed', Style.RESET_ALL)
                 print('Followed for ', follow_time)
@@ -160,17 +164,13 @@ def analysis(first, last, data):
                 query = """UPDATE hashes SET id=?, md5=?, sha256=? WHERE md5=? AND sha256=?;"""
                 cur.execute(query, insert_data)
 
-        else:
-            # Print a yellow warning, no data captured.
-            print(Back.YELLOW + 'ALERT: Stay vigilant, Distance:', dist[0],'m', u"\u00B1", deviation, 'm', Style.RESET_ALL)
-
 def main():
     # Get our counter
     global global_counter
 
     # Grab all of our Kismet data
     cur = conn(kismet_db).cursor()
-    cur.execute("SELECT devmac, first_time, last_time, strongest_signal, device FROM devices")
+    cur.execute("SELECT devmac, first_time, last_time, strongest_signal, type, device FROM devices")
 
     rows = cur.fetchall()
 
@@ -180,16 +180,17 @@ def main():
             print(Back.GREEN + "Friendly in range", Style.RESET_ALL)
         else:
             # Required for some reason
-            devmac, first_time, last_time, signal, device_info = row
+            devmac, first_time, last_time, signal, type, device_info = row
 
             # Grab from our row array
             devmac = row[0]
             first_time = row[1]
             last_time = row[2]
             signal = row[3]
+            devtype = row[3]
 
             # Clean and load our JSON record
-            device_json = str(row[4])
+            device_json = str(row[5])
             clean = device_json[2:-1]
             try:
                 obj = json.loads(clean)
@@ -209,13 +210,25 @@ def main():
                 if global_counter > 0:
                     analysis(first_time, last_time, data)
             except:
-                print(Back.BLUE + "UUID Unicode encode failed'", Style.RESET_ALL)
+                mac_addr = devmac
+                freq = '2417'
+                crypt = 'Unknown'
+                manufacturer = 'Unknown'
+                device_type = devtype
+                device_name = 'Unknown'
+                bssid = devmac
+
+                # Put our data into a list
+                data = [first_time, last_time, mac_addr, freq, signal, crypt, manufacturer, device_type, device_name, bssid]
+
+                # Run our analysis once Kismet has populated
+                if global_counter > 0:
+                    analysis(first_time, last_time, data)
+                    print('Analysis complete')
 
     # Determine if its the first iteration
     if global_counter == 0:
         print('Allowing Kismet to gather data...')
-    else:
-        print('Analysis complete')
 
     # Increment our global counter
     with threadLock:
