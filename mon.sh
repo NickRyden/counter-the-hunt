@@ -6,11 +6,11 @@ sudo airmon-ng start $interface
 
 # Grab the new interface name and run kismet in the background
 newInterface=$(iw dev | awk '$1=="Interface"{print $2}') 
-nohup kismet -c $newInterface & disown
+kismet -c $newInterface
 
-# OR don't background the process with...
-#newInterface=$(iw dev | awk '$1=="Interface"{print $2}') 
-#kismet -c $newInterface
+# OR to run it as a background process...
+#denewInterface=$(iw dev | awk '$1=="Interface"{print $2}') 
+#nohup kismet -c $newInterface & disown
 
 
 ### NOTES #####################################
